@@ -1,0 +1,4 @@
+node_modules/
+dist/
+grafana-hlc-datasource.zip
+.DS_Store

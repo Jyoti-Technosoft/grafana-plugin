@@ -1,0 +1,31 @@
+{
+  "name": "grafana-hlc-datasource",
+  "version": "0.1.0",
+  "private": true,
+  "description": "HLC Grafana datasource plugin (private distribution).",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build:frontend": "tsc -p tsconfig.json && cp plugin.json dist/plugin.json && mkdir -p dist/img && cp -r img/* dist/img/",
+    "build:backend:linux-amd64": "mkdir -p dist && GOOS=linux GOARCH=amd64 go build -o dist/hlc-datasource-backend_linux_amd64 ./pkg",
+    "build:backend:linux-arm64": "mkdir -p dist && GOOS=linux GOARCH=arm64 go build -o dist/hlc-datasource-backend_linux_arm64 ./pkg",
+    "build:backend:local": "npm run build:backend:linux-amd64 && npm run build:backend:linux-arm64",
+    "build:backend:docker": "mkdir -p dist && docker run --rm -v \"$PWD\":/src -w /src golang:1.24 sh -lc \"/usr/local/go/bin/go mod download && GOOS=linux GOARCH=amd64 /usr/local/go/bin/go build -o dist/hlc-datasource-backend_linux_amd64 ./pkg && GOOS=linux GOARCH=arm64 /usr/local/go/bin/go build -o dist/hlc-datasource-backend_linux_arm64 ./pkg\"",
+    "build:backend": "bash -lc 'if command -v go >/dev/null 2>&1; then npm run build:backend:local; else npm run build:backend:docker; fi'",
+    "build": "npm run clean && npm run build:frontend && npm run build:backend",
+    "dev": "docker compose up --build",
+    "package": "npm run build && (cd dist && zip -r ../grafana-hlc-datasource.zip .)",
+    "sign:private": "npx @grafana/sign-plugin@latest --rootUrls \"$GRAFANA_ROOT_URL\""
+  },
+  "dependencies": {
+    "@grafana/data": "9.5.3",
+    "@grafana/runtime": "9.5.3",
+    "@grafana/ui": "9.5.3",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "17.0.75",
+    "@types/react-dom": "17.0.25",
+    "typescript": "4.9.5"
+  }
+}
