@@ -1,7 +1,7 @@
 {
   "type": "datasource",
   "name": "HLC Datasource",
-  "id": "jtdevloper-enteros-hlc-datasource",
+  "id": "jtdevloper-enteroshlc-datasource",
   "metrics": true,
   "backend": true,
   "executable": "hlc-datasource-backend",

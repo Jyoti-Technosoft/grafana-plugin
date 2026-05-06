@@ -1,0 +1,37 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+{
+  "manifestVersion": "2.0.0",
+  "signatureType": "private",
+  "signedByOrg": "jtdevloper",
+  "signedByOrgName": "jtdevloper",
+  "rootUrls": [
+    "https://grafana.net/"
+  ],
+  "plugin": "jtdevloper-enteroshlc-datasource",
+  "version": "0.1.1",
+  "time": 1778053564083,
+  "keyId": "7e4d0c6a708866e7",
+  "files": {
+    "QueryEditor.js": "f69307d76aa9bf96f9b81a42843f8960bf206e36c2994aa0bb68295f3557e16f",
+    "hlc-datasource-backend_linux_arm64": "453aace5a3e76013669b4683ab98a1b7e47ce08f62249680f2cd6745e4ec86e7",
+    "ConfigEditor.js": "c60b4f4fa058c484b013b54aed26cb44dd79255d1fe704eeb540e2075b7580cf",
+    "plugin.json": "42750ecf13ec923818fc7773536845e3604b05e61111562b57f1d4d8644dbc5d",
+    "types.js": "d43aa81f5bc89faa359e0f97c814ba25155591ff078fbb9bfd40f8c7c9683230",
+    "datasource.js": "63eb9810125ac45f89ace3d6f8a2c06f7a78d6f3bd51ac5ed18220d4f387f1e6",
+    "module.js": "50284d86db4ecccc745763f10bf1b2aac433e943fcba70b8e489e24a49f43974",
+    "hlc-datasource-backend_linux_amd64": "20fa2541a691e426f15054dd0c2650f71d56e2265d588b329838240a7e041587",
+    "img/logo.svg": "e37b33f41727a71fcc3680253a9963922ec5c20087ae8133656ad3f10dabcfef"
+  }
+}
+-----BEGIN PGP SIGNATURE-----
+
+wsA+BAETCgBtBYJp+vG8CRB+TQxqcIhm50UUAAAAAAAcACBzYWx0QG5vdGF0
+aW9ucy5vcGVucGdwanMub3JntG9v+SC17zdAWLJhg55hXwFakiV3u0obUovg
+uJi6rmQWIQTzOyW2kQdOhGNlcPN+TQxqcIhm5wAAyeECCJSpWOnuE8uEqZwj
+wgDsQ2Uj3StJwnj2Z3K2k9O4QuAm38DkTwATCyAplJJ4TCt34yfnH2iOqTM3
+NxfIW3tzxJs+AgkB3ky/JGafswGQdN1FbmYw/ufxR5il+xZ8qko0zjbsKCNQ
+IIv2YYjk7G7fPt9h/P1tVfXQl/5GGQRuLQdguLEbpWc=
+=IU1k
+-----END PGP SIGNATURE-----
