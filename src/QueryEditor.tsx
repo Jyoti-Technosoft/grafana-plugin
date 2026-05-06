@@ -14,6 +14,7 @@ export function QueryEditor({ datasource, query, onChange, onRunQuery }: Props) 
   const [targets, setTargets] = useState<Option[]>([]);
   const [captures, setCaptures] = useState<Option[]>([]);
   const [metrics, setMetrics] = useState<Option[]>([]);
+  const [measurements, setMeasurements] = useState<Option[]>([]);
 
   const target = query.target ?? '';
   const capture = query.capture ?? '';
@@ -40,6 +41,14 @@ export function QueryEditor({ datasource, query, onChange, onRunQuery }: Props) 
     datasource.getMetrics(target, capture).then((items) => setMetrics(toOptions(items)));
   }, [datasource, target, capture]);
 
+  useEffect(() => {
+    if (!target || !capture) {
+      setMeasurements([]);
+      return;
+    }
+    datasource.getMeasurements(target, capture, metric).then((items) => setMeasurements(toOptions(items)));
+  }, [datasource, target, capture, metric]);
+
   const updateQuery = (next: Partial<HlcQuery>) => {
     onChange({ ...query, ...next });
     onRunQuery();
@@ -51,7 +60,7 @@ export function QueryEditor({ datasource, query, onChange, onRunQuery }: Props) 
         <Select
           options={targets}
           value={target ? { label: target, value: target } : null}
-          onChange={(value) => updateQuery({ target: value?.value ?? '', capture: '', metric: '' })}
+          onChange={(value) => updateQuery({ target: value?.value ?? '', capture: '', metric: '', measurement: '' })}
           width={28}
           placeholder="Select target"
         />
@@ -61,7 +70,7 @@ export function QueryEditor({ datasource, query, onChange, onRunQuery }: Props) 
         <Select
           options={captures}
           value={capture ? { label: capture, value: capture } : null}
-          onChange={(value) => updateQuery({ capture: value?.value ?? '', metric: '' })}
+          onChange={(value) => updateQuery({ capture: value?.value ?? '', metric: '', measurement: '' })}
           width={28}
           placeholder="Select capture"
         />
@@ -71,7 +80,7 @@ export function QueryEditor({ datasource, query, onChange, onRunQuery }: Props) 
         <Select
           options={metrics}
           value={metric ? { label: metric, value: metric } : null}
-          onChange={(value) => updateQuery({ metric: value?.value ?? '' })}
+          onChange={(value) => updateQuery({ metric: value?.value ?? '', measurement: '' })}
           width={28}
           placeholder="Select metric"
         />
@@ -79,16 +88,11 @@ export function QueryEditor({ datasource, query, onChange, onRunQuery }: Props) 
 
       <InlineField label="Measurement" labelWidth={14}>
         <Select
-          options={[
-            { label: 'value', value: 'value' },
-            { label: 'avg', value: 'avg' },
-            { label: 'max', value: 'max' },
-            { label: 'min', value: 'min' },
-          ]}
+          options={measurements}
           value={measurement ? { label: measurement, value: measurement } : null}
           onChange={(value) => updateQuery({ measurement: value?.value ?? '' })}
           width={28}
-          placeholder="Optional"
+          placeholder="Select measurement"
         />
       </InlineField>
 

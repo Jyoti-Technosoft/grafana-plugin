@@ -20,6 +20,9 @@ class HlcDataSource extends runtime_1.DataSourceWithBackend {
     async getMetrics(targetName, captureName) {
         return this.fetchVariableValues('metrics', { targetName, captureName });
     }
+    async getMeasurements(targetName, captureName, metricName) {
+        return this.fetchVariableValues('measurements', { targetName, captureName, metricName });
+    }
     async fetchVariableValues(variable, body) {
         const response = (await (0, runtime_1.getBackendSrv)().post(`/api/datasources/uid/${this.uid}/resources/variables/${variable}`, body));
         return Array.isArray(response) ? response : [];
